@@ -1,0 +1,4 @@
+rootProject.name = 'OpenGLExamples'
+include 'Window'
+include 'Triangle'
+
