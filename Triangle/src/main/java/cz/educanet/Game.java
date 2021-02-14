@@ -11,7 +11,10 @@ public class Game {
     private static final float vertices[] = {
             -0.5f, -0.5f, 0.0f,
             0.5f, -0.5f, 0.0f,
-            0.0f, 0.5f, 0.0f
+            0.5f, 0.5f, 0.0f/*, // Uncomment this for the square
+            -0.5f, -0.5f, 0.0f,
+            -0.5f, 0.5f, 0.0f,
+            0.5f, 0.5f, 0.0f*/
     };
     private static int triangleVaoId;
     private static int triangleVboId;
@@ -45,7 +48,7 @@ public class Game {
     public static void render(long window) {
         GL33.glUseProgram(Shaders.shaderProgramId);
         GL33.glBindVertexArray(triangleVaoId);
-        GL33.glDrawArrays(GL33.GL_TRIANGLES, 0, 3);
+        GL33.glDrawArrays(GL33.GL_TRIANGLES, 0, vertices.length / 3);
     }
 
     public static void update(long window) {
