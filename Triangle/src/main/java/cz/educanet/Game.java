@@ -52,7 +52,6 @@ public class Game {
     }
 
     public static void update(long window) {
-
     }
 
 }
