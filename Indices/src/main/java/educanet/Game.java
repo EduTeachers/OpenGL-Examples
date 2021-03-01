@@ -23,6 +23,7 @@ public class Game {
     private static int squareVaoId;
     private static int squareVboId;
     private static int squareEboId;
+    private static boolean pohyb = true;
 
     public static void init(long window) {
         // Setup shaders
@@ -69,6 +70,29 @@ public class Game {
     }
 
     public static void update(long window) {
-    }
 
+        if (vertices[0] >= 1.0f) {
+            pohyb = false;
+        } else if (vertices[6] <= -1.0f) {
+            pohyb = true;
+        }
+
+
+        if (pohyb) {
+            for (int i = 0; i < 4; i++) {
+                vertices[i * 3] += 0.01f;
+            }
+        } else {
+            for (int i = 0; i < 4; i++) {
+                vertices[i * 3] -= 0.01f;
+            }
+        }
+
+
+        FloatBuffer fb = BufferUtils.createFloatBuffer(vertices.length)
+                .put(vertices)
+                .flip();
+        GL33.glBufferData(GL33.GL_ARRAY_BUFFER, fb, GL33.GL_STATIC_DRAW);
+        MemoryUtil.memFree(fb);
+    }
 }
