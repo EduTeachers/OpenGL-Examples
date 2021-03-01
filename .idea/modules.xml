@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Indices.iml" filepath="$PROJECT_DIR$/.idea/modules/Indices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ShaderUniforms.iml" filepath="$PROJECT_DIR$/.idea/modules/ShaderUniforms.iml" />
     </modules>
   </component>
 </project>
