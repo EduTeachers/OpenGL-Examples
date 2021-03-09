@@ -2,4 +2,6 @@ rootProject.name = 'OpenGLExamples'
 include 'Window'
 include 'Triangle'
 include 'Indices'
+include 'ShaderAttrributes'
+include 'ShaderUniforms'
 
