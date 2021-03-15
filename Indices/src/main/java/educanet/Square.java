@@ -1,48 +1,53 @@
 package educanet;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL33;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-public class Game {
+public class Square {
 
-    private static final float[] vertices = {
-            0.5f, 0.5f, 0.0f, // 0 -> Top right
-            0.5f, -0.5f, 0.0f, // 1 -> Bottom right
-            -0.5f, -0.5f, 0.0f, // 2 -> Bottom left
-            -0.5f, 0.5f, 0.0f, // 3 -> Top left
+    private float[] vertices;
+    private static final int[] indices = {
+            0, 1, 2, // First triangle
+            1, 2, 3, // Second triangle
+
     };
 
-    private static final float[] colors = {
-            1.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f,
-            0.0f, 0.0f, 1.0f,
+    private float[] colors = {
+            0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f,
             0.0f, 0.0f, 0.0f,
     };
 
-    private static final int[] indices = {
-            0, 1, 3, // First triangle
-            1, 2, 3 // Second triangle
-    };
+    private int squareVaoId;
+    private int squareVboId;
+    private int squareEboId;
+    private int colorsId;
 
-    private static int squareVaoId;
-    private static int squareVboId;
-    private static int squareEboId;
-    private static int colorsId;
+    private FloatBuffer cb;
 
-    public static void init(long window) {
-        // Setup shaders
-        Shaders.initShaders();
-
+    public Square(float x, float y, float width, float height) {
+        vertices = new float[12];
         // Generate all the ids
         squareVaoId = GL33.glGenVertexArrays();
+
         squareVboId = GL33.glGenBuffers();
         squareEboId = GL33.glGenBuffers();
         colorsId = GL33.glGenBuffers();
+
+
+        //set verticies
+        for (int it = 0; it < 4; it++) {
+
+            vertices[it * 3] = x + width * (it % 2);
+            vertices[it * 3 + 1] = y - width * (Math.round(it / 2));
+            vertices[it * 3 + 2] = 0.0f;
+
+        }
 
         // Tell OpenGL we are currently using this object (vaoId)
         GL33.glBindVertexArray(squareVaoId);
@@ -74,7 +79,7 @@ public class Game {
         // Tell OpenGL we are currently writing to this buffer (colorsId)
         GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, colorsId);
 
-        FloatBuffer cb = BufferUtils.createFloatBuffer(colors.length)
+        cb = BufferUtils.createFloatBuffer(colors.length)
                 .put(colors)
                 .flip();
 
@@ -84,19 +89,19 @@ public class Game {
         GL33.glEnableVertexAttribArray(1);
 
         // Clear the buffer from the memory (it's saved now on the GPU, no need for it here)
-        MemoryUtil.memFree(cb);
+        //MemoryUtil.memFree(cb);
+
     }
 
-    public static void render(long window) {
-        GL33.glUseProgram(Shaders.shaderProgramId);
-
-        // Draw using the glDrawElements function
+    public void draw() {
+        //GL33.glUseProgram(Shaders.shaderProgramId);
         GL33.glBindVertexArray(squareVaoId);
         GL33.glDrawElements(GL33.GL_TRIANGLES, indices.length, GL33.GL_UNSIGNED_INT, 0);
+
+        //update colors
+        GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, colorsId);
+        cb.put(colors).flip();
+        GL33.glBufferData(GL33.GL_ARRAY_BUFFER, cb, GL33.GL_STATIC_DRAW);
+        //MemoryUtil.memFree(cb);
     }
-
-    public static void update(long window) {
-
-    }
-
 }
