@@ -41,11 +41,11 @@ public class Square {
 
 
         //set verticies
-        for (int it = 0; it < 4; it++) {
+        for (int i = 0; i < 4; i++) {
 
-            vertices[it * 3] = x + width * (it % 2);
-            vertices[it * 3 + 1] = y - width * (Math.round(it / 2));
-            vertices[it * 3 + 2] = 0.0f;
+            vertices[i * 3] = x + width * (i % 2);
+            vertices[i * 3 + 1] = y - width * (Math.round(i / 2));
+            vertices[i * 3 + 2] = 0.0f;
 
         }
 
