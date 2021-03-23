@@ -104,4 +104,13 @@ public class Square {
         GL33.glBufferData(GL33.GL_ARRAY_BUFFER, cb, GL33.GL_STATIC_DRAW);
         //MemoryUtil.memFree(cb);
     }
+
+    public void changeColors(float value) {
+        for (int i = 0; i < colors.length; i += 3) {
+            colors[i] = (float) (Math.cos((vertices[i] + vertices[i + 1]) / Math.sin(value)%2)); //red
+            colors[i + 1] = (float) (Math.cos((vertices[i] + vertices[i + 2]) / Math.sin(value)%7)); //green
+            colors[i + 2] = (float) (Math.cos((vertices[i] + vertices[i + 1]) / Math.sin(value)%4)); //blue
+        }
+    }
 }
+

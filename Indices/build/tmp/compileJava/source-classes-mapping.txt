@@ -1,10 +1,10 @@
-educanet/Shaders.java
- educanet.Shaders
 educanet/utils/FileUtils.java
  educanet.utils.FileUtils
+educanet/Shaders.java
+ educanet.Shaders
+educanet/Square.java
+ educanet.Square
 educanet/Game.java
  educanet.Game
 educanet/Main.java
  educanet.Main
-educanet/Square.java
- educanet.Square
