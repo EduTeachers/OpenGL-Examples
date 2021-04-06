@@ -4,4 +4,5 @@ include 'Triangle'
 include 'Indices'
 include 'ShaderAttrributes'
 include 'ShaderUniforms'
+include 'Matrix'
 

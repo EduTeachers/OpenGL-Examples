@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Indices" />
+            <option value="$PROJECT_DIR$/Matrix" />
             <option value="$PROJECT_DIR$/ShaderAttrributes" />
             <option value="$PROJECT_DIR$/ShaderUniforms" />
             <option value="$PROJECT_DIR$/Triangle" />
