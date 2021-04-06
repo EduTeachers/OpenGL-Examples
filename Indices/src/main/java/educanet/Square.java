@@ -30,7 +30,7 @@ public class Square {
 
     private FloatBuffer cb;
 
-    public Square(float x, float y, float width, float height) {
+    public Square(float x, float y, float width) {
         vertices = new float[12];
         // Generate all the ids
         squareVaoId = GL33.glGenVertexArrays();
@@ -102,7 +102,6 @@ public class Square {
         GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, colorsId);
         cb.put(colors).flip();
         GL33.glBufferData(GL33.GL_ARRAY_BUFFER, cb, GL33.GL_STATIC_DRAW);
-        //MemoryUtil.memFree(cb);
     }
 
     public void changeColors(float value) {

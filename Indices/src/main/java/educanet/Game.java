@@ -38,7 +38,7 @@ public class Game {
             String line = maze[y];
             for(int x = 0;x < line.length();x++){
                 if (line.charAt(x) == '1') {
-                    squares.add(new Square(x*tileScaleX-1,(y*tileScaleY)*-1+1,tileScaleX,tileScaleY));
+                    squares.add(new Square(x*tileScaleX-1,(y*tileScaleY)*-1+1,tileScaleX));
                 }
             }
         }
