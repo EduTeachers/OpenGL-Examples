@@ -1,5 +1,6 @@
 package educanet;
 
+import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL33;
@@ -26,13 +27,21 @@ public class Game {
     private static int squareVboId;
     private static int squareEboId;
     private static int uniformColorLocation;
+    private static int matrixLocation;
+    private static FloatBuffer matrixFloatBuffer;
+    private static Matrix4f viewMatrix = new Matrix4f()
+            .identity();
 
     public static void init(long window) {
         // Setup shaders
         Shaders.initShaders();
 
+        matrixLocation = GL33.glGetUniformLocation(Shaders.shaderProgramId,"matrix");
+
         // Get uniform location
         uniformColorLocation = GL33.glGetUniformLocation(Shaders.shaderProgramId, "outColor");
+
+        matrixFloatBuffer = BufferUtils.createFloatBuffer(16);
 
         // Generate all the ids
         squareVaoId = GL33.glGenVertexArrays();
@@ -65,10 +74,8 @@ public class Game {
         // Clear the buffer from the memory (it's saved now on the GPU, no need for it here)
         MemoryUtil.memFree(fb);
 
-        // Change to Color...
-        // Tell OpenGL we are currently writing to this buffer (colorsId)
         GL33.glUseProgram(Shaders.shaderProgramId);
-        GL33.glUniform3f(uniformColorLocation, 0.0f, 1.0f, 0.0f);
+        GL33.glUniform3f(uniformColorLocation, 1.0f, 0.0f, 0.0f);
     }
 
     public static void render(long window) {
@@ -80,7 +87,20 @@ public class Game {
     }
 
     public static void update(long window) {
-
+        if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_D ) == GLFW.GLFW_PRESS){
+            viewMatrix.translate(0.0001f,0.0f,0.0f);
+        }
+        else if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_A ) == GLFW.GLFW_PRESS){
+            viewMatrix.translate(-0.0001f,0.0f,0.0f);
+        }
+        else if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_W ) == GLFW.GLFW_PRESS){
+            viewMatrix.translate(0.0f,0.0001f,0.0f);
+        }
+        else if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_S ) == GLFW.GLFW_PRESS){
+            viewMatrix.translate(0.0f,-0.0001f,0.0f);
+        }
+        viewMatrix.get(matrixFloatBuffer);
+        GL33.glUniformMatrix4fv(matrixLocation,false, matrixFloatBuffer);
     }
 
 }

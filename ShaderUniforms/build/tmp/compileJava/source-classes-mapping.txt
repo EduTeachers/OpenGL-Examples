@@ -1,8 +1,8 @@
 educanet/utils/FileUtils.java
  educanet.utils.FileUtils
+educanet/Shaders.java
+ educanet.Shaders
 educanet/Game.java
  educanet.Game
 educanet/Main.java
  educanet.Main
-educanet/Shaders.java
- educanet.Shaders
