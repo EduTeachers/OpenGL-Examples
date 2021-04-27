@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/Matrix" />
             <option value="$PROJECT_DIR$/ShaderAttrributes" />
             <option value="$PROJECT_DIR$/ShaderUniforms" />
+            <option value="$PROJECT_DIR$/Textures" />
             <option value="$PROJECT_DIR$/Triangle" />
             <option value="$PROJECT_DIR$/Window" />
           </set>

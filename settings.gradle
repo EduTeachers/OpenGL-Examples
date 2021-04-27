@@ -5,4 +5,5 @@ include 'Indices'
 include 'ShaderAttrributes'
 include 'ShaderUniforms'
 include 'Matrix'
+include 'Textures'
 
