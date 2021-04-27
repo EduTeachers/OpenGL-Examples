@@ -8,3 +8,4 @@ The examples below should be viewed in this order:
 4. ShaderAttrributes
 5. ShaderUniforms
 6. Matrix
+7. Textures
