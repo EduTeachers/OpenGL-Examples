@@ -30,7 +30,8 @@ public class Game {
     private static int matrixLocation;
     private static FloatBuffer matrixFloatBuffer;
     private static Matrix4f viewMatrix = new Matrix4f()
-            .identity();
+            .identity()
+            .scale(0.25f);
 
     public static void init(long window) {
         // Setup shaders
@@ -75,7 +76,7 @@ public class Game {
         MemoryUtil.memFree(fb);
 
         GL33.glUseProgram(Shaders.shaderProgramId);
-        GL33.glUniform3f(uniformColorLocation, 1.0f, 0.0f, 0.0f);
+        GL33.glUniform3f(uniformColorLocation, 1f, 0.5f, 0.0f);
     }
 
     public static void render(long window) {

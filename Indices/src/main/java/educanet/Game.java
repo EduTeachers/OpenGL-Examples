@@ -1,14 +1,8 @@
 package educanet;
 
 import educanet.utils.FileUtils;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL33;
-import org.lwjgl.system.CallbackI;
-import org.lwjgl.system.MemoryUtil;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 public class Game {
